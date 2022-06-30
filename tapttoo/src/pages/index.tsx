@@ -1,11 +1,12 @@
-import type { NextPage } from "next";
-import styles from "../../styles/Home.module.css";
+import type { GetServerSideProps, GetStaticProps, NextPage } from "next";
+import { LogoDesktop } from "../components";
+import { api } from "../services/api";
 import { H1 } from "./styled";
 
 const Home: NextPage = () => {
   return (
-    <div className={styles.container}>
-      <H1>Tapttoo</H1>
+    <div>
+      <LogoDesktop />
     </div>
   );
 };
