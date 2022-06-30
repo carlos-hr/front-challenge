@@ -1,17 +1,32 @@
-import { api } from "../../services/api";
+/* eslint-disable @next/next/no-img-element */
+import Image from "next/image";
 import { Background, Bold, Logo, Main, Regular, Text } from "./styles";
 
-const BannerDesktop = () => {
+interface BannerDesktopProps {
+  texts: {
+    title: string;
+    subtitle: string;
+    slogan: string;
+    call_action: string;
+  };
+  images: {
+    logo: string;
+  };
+}
+const BannerDesktop = ({ texts, images }: BannerDesktopProps) => {
+  const { logo } = images;
+  const { title, subtitle, slogan, call_action } = texts;
+
   return (
     <Background>
       <Main>
-        <Logo>Tapttoo</Logo>
+        <Logo>
+          <img src={logo} alt={title} />
+        </Logo>
         <Text>
-          <Bold>O lugar certo para encontrar a sua próxima tatuagem.</Bold>
-          <Regular>
-            Descubra e siga seus tatuadores e estilos preferidos.
-          </Regular>
-          <Bold>Acesse!</Bold>
+          <Bold>{subtitle}</Bold>
+          <Regular>{slogan}</Regular>
+          <Bold>{call_action}</Bold>
         </Text>
       </Main>
     </Background>
