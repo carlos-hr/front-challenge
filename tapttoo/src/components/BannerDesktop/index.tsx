@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import Image from "next/image";
-import { Background, Bold, Logo, Main, Regular, Text } from "./styles";
+import { Background, Bold, Logo, Main, Regular, Text } from "./styled";
 
 interface BannerDesktopProps {
   texts: {

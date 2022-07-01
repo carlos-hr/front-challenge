@@ -14,7 +14,7 @@ export const Background = styled.div`
   align-items: center;
 `;
 
-export const Main = styled.main`
+export const Main = styled.div`
   height: 22.75rem;
   width: 20rem;
   color: white;
