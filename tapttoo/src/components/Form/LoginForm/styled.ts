@@ -1,6 +1,11 @@
 import styled from "styled-components";
 
-export const Main = styled.main``;
+export const Main = styled.main`
+  @media screen and (max-width: 359px) {
+    width: 19rem;
+    margin: 0 auto;
+  }
+`;
 
 export const Form = styled.form`
   height: 22.75rem;
@@ -8,6 +13,10 @@ export const Form = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+
+  @media screen and (max-width: 767px) {
+    height: 30rem;
+  }
 `;
 
 export const Title = styled.h1`
@@ -22,6 +31,11 @@ export const FormButtonContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 2.5rem;
+
+  @media screen and (max-width: 359px) {
+    width: 19rem;
+    margin: 3.15rem auto;
+  }
 `;
 
 export const Anchor = styled.a`

@@ -1,5 +1,11 @@
 import type { GetServerSideProps } from "next";
-import { Content, LoginContainer } from "../../styles/pages/home";
+import {
+  BannerContainer,
+  Content,
+  LoginContainer,
+  Logo,
+  LogoMobile,
+} from "../../styles/pages/home";
 import { BannerDesktop, LoginForm } from "../components";
 import { BASE_URL } from "../utils/url";
 
@@ -29,7 +35,13 @@ const Home = ({ data }: HomeProps) => {
 
   return (
     <Content>
-      <BannerDesktop texts={texts} images={images} />
+      <BannerContainer>
+        <BannerDesktop texts={texts} images={images} />
+      </BannerContainer>
+
+      <LogoMobile>
+        <Logo src={images.logo_mobile} />
+      </LogoMobile>
 
       <LoginContainer>
         <LoginForm section_login={texts.section_login} />
