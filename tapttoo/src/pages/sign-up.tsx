@@ -1,4 +1,5 @@
 import type { GetServerSideProps } from "next";
+import Head from "next/head";
 import {
   BannerContainer,
   Content,
@@ -28,19 +29,24 @@ const CreateAccount = ({ data }: CreateAccountProps) => {
   const { texts, images } = data;
 
   return (
-    <Content>
-      <BannerContainer>
-        <BannerDesktop texts={texts} images={images} />
-      </BannerContainer>
+    <>
+      <Head>
+        <title>Tapttoo | SignUp</title>
+      </Head>
+      <Content>
+        <BannerContainer>
+          <BannerDesktop texts={texts} images={images} />
+        </BannerContainer>
 
-      <LogoMobile>
-        <Logo src={images.logo_mobile} />
-      </LogoMobile>
+        <LogoMobile>
+          <Logo src={images.logo_mobile} />
+        </LogoMobile>
 
-      <SignUpFormContainer>
-        <SignUpForm />
-      </SignUpFormContainer>
-    </Content>
+        <SignUpFormContainer>
+          <SignUpForm />
+        </SignUpFormContainer>
+      </Content>
+    </>
   );
 };
 
