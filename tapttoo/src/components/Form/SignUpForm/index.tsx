@@ -18,16 +18,18 @@ import {
   signUpTitle,
   userPlaceholder,
 } from "./locales";
-import Link from "next/link";
 import { validateForm } from "../../../utils/validateForms";
 import { FormEvent } from "react";
 import { gray_800 } from "../../../utils/colors";
+import { useRouter } from "next/router";
 
 const SignUpForm = () => {
   const signUp = (e: FormEvent) => {
     e.preventDefault();
     validateForm(["user", "email", "password", "confirm-password"]);
   };
+
+  const router = useRouter();
 
   return (
     <Form onSubmit={signUp} noValidate>
@@ -92,16 +94,15 @@ const SignUpForm = () => {
 
       <LoginButtonContainer>
         <p>{alreadyHasAccount}</p>
-        <Link href="/">
-          <Button
-            background="white"
-            color={gray_800}
-            border={`2px solid ${gray_800}`}
-            width="10rem"
-          >
-            {loginText}
-          </Button>
-        </Link>
+        <Button
+          background="white"
+          color={gray_800}
+          border={`2px solid ${gray_800}`}
+          width="10rem"
+          onClick={() => router.push("/")}
+        >
+          {loginText}
+        </Button>
       </LoginButtonContainer>
     </Form>
   );

@@ -17,10 +17,10 @@ import useForm from "../../../hooks/useForm";
 import { BASE_URL } from "../../../utils/url";
 import { gray_800 } from "../../../utils/colors";
 import { Oval } from "react-loader-spinner";
-import Link from "next/link";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { validateForm } from "../../../utils/validateForms";
+import { useRouter } from "next/router";
 
 interface LoginFormProps {
   section_login: {
@@ -111,6 +111,8 @@ const LoginForm = ({ section_login }: LoginFormProps) => {
     renderLoginStatus();
   }, [isCompleted, error, success, renderLoginStatus]);
 
+  const router = useRouter();
+
   return (
     <Main>
       <ToastContainer
@@ -164,16 +166,15 @@ const LoginForm = ({ section_login }: LoginFormProps) => {
 
         <SignUpButtonContainer>
           <p>{register}</p>
-          <Link href="sign-up">
-            <Button
-              background="white"
-              color={gray_800}
-              border={`2px solid ${gray_800}`}
-              width="11.25rem"
-            >
-              {register_call}
-            </Button>
-          </Link>
+          <Button
+            background="white"
+            color={gray_800}
+            border={`2px solid ${gray_800}`}
+            width="11.25rem"
+            onClick={() => router.push("/sign-up")}
+          >
+            {register_call}
+          </Button>
         </SignUpButtonContainer>
       </Form>
     </Main>

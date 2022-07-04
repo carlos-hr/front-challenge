@@ -9,6 +9,7 @@ interface ButtonProps {
   border: string;
   children: ReactNode;
   submit?: boolean;
+  onClick?: () => void;
 }
 
 const Button = (props: ButtonProps) => {
@@ -20,6 +21,7 @@ const Button = (props: ButtonProps) => {
     width = "10rem",
     children,
     submit = false,
+    onClick,
   } = props;
 
   return (
@@ -30,6 +32,7 @@ const Button = (props: ButtonProps) => {
       border={border}
       color={color}
       type={submit ? "submit" : "button"}
+      onClick={onClick}
     >
       {children}
     </StyledButton>
