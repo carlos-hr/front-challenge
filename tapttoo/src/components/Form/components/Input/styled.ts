@@ -17,6 +17,7 @@ export const StyledInput = styled.input`
   border: none;
   outline: none;
   border-bottom: 2px solid ${gray_800};
+  font-size: 1.125rem;
 
   @media screen and (max-width: 359px) {
     width: 19rem;
