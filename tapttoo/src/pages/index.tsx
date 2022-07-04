@@ -5,7 +5,7 @@ import {
   LoginContainer,
   Logo,
   LogoMobile,
-} from "../../styles/pages/home";
+} from "../../styles/pages";
 import { BannerDesktop, LoginForm } from "../components";
 import { BASE_URL } from "../utils/url";
 

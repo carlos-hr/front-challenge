@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { gray_800 } from "../../../../utils/colors";
 
 export const InputContainer = styled.div`
   position: relative;
@@ -15,7 +16,7 @@ export const StyledInput = styled.input`
   height: 1.8125rem;
   border: none;
   outline: none;
-  border-bottom: 2px solid #2d3748;
+  border-bottom: 2px solid ${gray_800};
 
   @media screen and (max-width: 359px) {
     width: 19rem;

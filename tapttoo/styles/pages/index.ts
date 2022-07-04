@@ -35,3 +35,10 @@ export const Logo = styled.img`
   height: 5rem;
   margin-top: 2.5rem;
 `;
+
+export const SignUpFormContainer = styled.div`
+  margin: auto;
+  @media screen and (max-width: 767px) {
+    margin-top: 4.75rem;
+  }
+`;
