@@ -6,7 +6,6 @@ import {
   Title,
   FormButtonContainer,
   LoginButtonContainer,
-  LinkText,
   ValidationMessage,
 } from "../styled";
 import {
@@ -92,17 +91,17 @@ const SignUpForm = () => {
       </FormButtonContainer>
 
       <LoginButtonContainer>
+        <p>{alreadyHasAccount}</p>
         <Link href="/">
-          <LinkText>{alreadyHasAccount}</LinkText>
+          <Button
+            background="white"
+            color={gray_800}
+            border={`2px solid ${gray_800}`}
+            width="10rem"
+          >
+            {loginText}
+          </Button>
         </Link>
-        <Button
-          background="white"
-          color={gray_800}
-          border={`2px solid ${gray_800}`}
-          width="10rem"
-        >
-          {loginText}
-        </Button>
       </LoginButtonContainer>
     </Form>
   );
