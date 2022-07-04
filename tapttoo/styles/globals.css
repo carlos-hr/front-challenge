@@ -15,3 +15,12 @@ a {
   padding: 0;
   font-family: "Lato";
 }
+
+.error {
+  border-bottom: 2px solid red !important;
+  color: red;
+}
+
+.error + div > svg {
+  color: red;
+}
