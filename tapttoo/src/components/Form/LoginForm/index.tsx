@@ -5,14 +5,23 @@ import {
   Anchor,
   Form,
   FormButtonContainer,
+  LinkText,
+  LoaderContainer,
   Main,
-  SignUpContainer,
+  SignUpButtonContainer,
   Title,
-} from "./styled";
+  ValidationMessage,
+} from "../styled";
 import Button from "../components/Button";
-import { FormEvent, useState } from "react";
+import { FormEvent, useCallback, useEffect, useState } from "react";
 import useForm from "../../../hooks/useForm";
 import { BASE_URL } from "../../../utils/url";
+import { gray_800 } from "../../../utils/colors";
+import { Oval } from "react-loader-spinner";
+import Link from "next/link";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { validateForm } from "../../../utils/validateForms";
 
 interface LoginFormProps {
   section_login: {
@@ -29,18 +38,39 @@ const LoginForm = ({ section_login }: LoginFormProps) => {
   const { form, onChange } = useForm({ email: "", password: "" });
 
   const [requestData, setRequestData] = useState({
+    isLoading: false,
     isCompleted: false,
     error: false,
     success: false,
     message: "",
   });
 
+  const { isLoading, isCompleted, error, success, message } = requestData;
+
+  const renderLoginStatus = useCallback(() => {
+    if (isCompleted) {
+      if (success) {
+        toast.success(message, {
+          theme: "colored",
+        });
+      } else if (error) {
+        toast.error(message, {
+          theme: "colored",
+        });
+      }
+    }
+  }, [error, isCompleted, message, success]);
+
   const submitLogin = (e: FormEvent) => {
     e.preventDefault();
+    setRequestData({ ...requestData, isLoading: true, isCompleted: false });
+
+    validateForm(["email", "password"]);
+
     const { email, password } = form;
     const request = new Request(`${BASE_URL}/login/`);
-
     const formData = new FormData();
+
     formData.append("email", email);
     formData.append("password", password);
 
@@ -51,6 +81,7 @@ const LoginForm = ({ section_login }: LoginFormProps) => {
       .then((res) => {
         if (res.Ok) {
           setRequestData({
+            isLoading: false,
             isCompleted: true,
             error: false,
             success: true,
@@ -58,6 +89,7 @@ const LoginForm = ({ section_login }: LoginFormProps) => {
           });
         } else {
           setRequestData({
+            isLoading: false,
             isCompleted: true,
             error: true,
             success: false,
@@ -67,6 +99,7 @@ const LoginForm = ({ section_login }: LoginFormProps) => {
       })
       .catch((err) => {
         setRequestData({
+          isLoading: false,
           isCompleted: true,
           error: true,
           success: false,
@@ -75,9 +108,20 @@ const LoginForm = ({ section_login }: LoginFormProps) => {
       });
   };
 
+  useEffect(() => {
+    renderLoginStatus();
+  }, [isCompleted, error, success, renderLoginStatus]);
+
   return (
     <Main>
-      <Form onSubmit={submitLogin}>
+      <ToastContainer
+        newestOnTop={true}
+        closeOnClick
+        draggable
+        autoClose={5000}
+        rtl={false}
+      />
+      <Form onSubmit={submitLogin} noValidate>
         <Title>{title}</Title>
         <div>
           <Input
@@ -85,39 +129,53 @@ const LoginForm = ({ section_login }: LoginFormProps) => {
             value={form.email}
             name="email"
             type="email"
+            id="email"
             placeholder={userPlaceholder}
+            required
           >
             <AiOutlineUser />
           </Input>
+          <ValidationMessage id="validation-email"></ValidationMessage>
           <Input
             onChange={onChange}
             value={form.password}
+            id="password"
             name="password"
             type="password"
             placeholder={passwordPlaceholder}
+            required
           >
             <AiOutlineLock />
           </Input>
+          <ValidationMessage id="validation-password"></ValidationMessage>
         </div>
 
         <FormButtonContainer>
           <Anchor>{forgot}</Anchor>
-          <Button submit border="none" color="white" background="#2d3748">
-            {login_call}
+          <Button submit border="none" color="white" background={gray_800}>
+            {isLoading ? (
+              <LoaderContainer>
+                <Oval height="1.5rem" color="white" />
+              </LoaderContainer>
+            ) : (
+              login_call
+            )}
           </Button>
         </FormButtonContainer>
 
-        <SignUpContainer>
-          <p>{register}</p>
+        <SignUpButtonContainer>
+          <Link href="sign-up">
+            <LinkText>{register}</LinkText>
+          </Link>
           <Button
             background="white"
-            color="#2D3748"
-            border="2px solid #2D3748"
+            color={gray_800}
+            border={`2px solid ${gray_800}`}
             width="11.25rem"
           >
             {register_call}
           </Button>
-        </SignUpContainer>
+        </SignUpButtonContainer>
       </Form>
     </Main>
   );

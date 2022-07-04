@@ -6,9 +6,10 @@ interface InputProps {
   type?: string;
   children?: ReactNode;
   required?: boolean;
-  name: string;
-  value: string;
-  onChange: (e: React.FormEvent<HTMLInputElement>) => void;
+  id?: string;
+  name?: string;
+  value?: string;
+  onChange?: (e: React.FormEvent<HTMLInputElement>) => void;
 }
 
 const Input = (props: InputProps) => {
@@ -17,6 +18,7 @@ const Input = (props: InputProps) => {
     type = "text",
     children,
     required = false,
+    id,
     name,
     value,
     onChange,
@@ -31,6 +33,7 @@ const Input = (props: InputProps) => {
         placeholder={placeholder}
         required={required}
         onChange={onChange}
+        id={id}
       />
       <Icon>{children}</Icon>
     </InputContainer>
