@@ -70,14 +70,6 @@ export const LoaderContainer = styled.div`
   justify-content: center;
 `;
 
-export const LinkText = styled.p`
-  cursor: pointer;
-
-  :hover {
-    text-decoration: underline;
-  }
-`;
-
 export const ValidationMessage = styled.span`
   color: red;
   font-weight: 400;

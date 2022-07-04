@@ -5,7 +5,6 @@ import {
   Anchor,
   Form,
   FormButtonContainer,
-  LinkText,
   LoaderContainer,
   Main,
   SignUpButtonContainer,
@@ -164,17 +163,17 @@ const LoginForm = ({ section_login }: LoginFormProps) => {
         </FormButtonContainer>
 
         <SignUpButtonContainer>
+          <p>{register}</p>
           <Link href="sign-up">
-            <LinkText>{register}</LinkText>
+            <Button
+              background="white"
+              color={gray_800}
+              border={`2px solid ${gray_800}`}
+              width="11.25rem"
+            >
+              {register_call}
+            </Button>
           </Link>
-          <Button
-            background="white"
-            color={gray_800}
-            border={`2px solid ${gray_800}`}
-            width="11.25rem"
-          >
-            {register_call}
-          </Button>
         </SignUpButtonContainer>
       </Form>
     </Main>
