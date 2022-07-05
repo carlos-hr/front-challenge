@@ -38,7 +38,7 @@ Como melhorias para o projeto tomei a decisão de implementar:
 
 - [x] Loader Spinner ao fazer requisição de login;
 - [x] Avisos com a biblioteca de toast para feedback ao usuário;
-- [ ] Ajuste de navegação entre páginas no deploy vercel;
+- [x] Ajuste de navegação entre páginas no deploy vercel;
 
 ### :robot: Tecnologias:
 
